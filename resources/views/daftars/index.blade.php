@@ -32,23 +32,23 @@
                             </thead>
                             <tbody>
                                 <?php $no = 1; ?>
-                                @forelse ($daftars as $daftar)
+                                @forelse ($daftars as $index => $daftar)
                                     <tr>
-                                        <td>{{ $no }}</td>
+                                        <td scope="row">{{ $index + $daftars->firstItem() }}</td>
                                         <td>{!! $daftar->tgl_daftar !!}</td>
                                         <td>{{ $daftar->no_rm }}</td>
                                         <td>{!! $daftar->nama_pasien !!}</td>
                                         <td>{!! $daftar->tgl_lahir !!}</td>
-                                        <td class="text-center">
-                                            {{-- <form onsubmit="return confirm('Apakah Anda Yakin ?');"
+                                        {{-- <td class="text-center">
+                                            <form onsubmit="return confirm('Apakah Anda Yakin ?');"
                                                 action="{{ route('posts.destroy', $daftar->id) }}" method="POST">
                                                 <a href="{{ route('posts.edit', $daftar->id) }}"
                                                     class="btn btn-sm btn-primary">EDIT</a>
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
-                                            </form> --}}
-                                        </td>
+                                            </form>
+                                        </td> --}}
                                     </tr>
                                     <?php $no++; ?>
                                 @empty
