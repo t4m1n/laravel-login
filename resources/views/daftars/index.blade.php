@@ -36,7 +36,7 @@
                                     <tr>
                                         <td scope="row">{{ $index + $daftars->firstItem() }}</td>
                                         <td>{!! $daftar->tgl_daftar !!}</td>
-                                        <td>{{ $daftar->no_rm }}</td>
+                                        <td>{!! $daftar->no_rm !!}</td>
                                         <td>{!! $daftar->nama_pasien !!}</td>
                                         <td>{!! $daftar->tgl_lahir !!}</td>
                                         {{-- <td class="text-center">
