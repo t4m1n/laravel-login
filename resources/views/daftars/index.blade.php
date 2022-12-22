@@ -28,6 +28,7 @@
                                     <th scope="col">No RM</th>
                                     <th scope="col">Nama</th>
                                     <th scope="col">Tgl Lahir</th>
+                                    <th scope="col" class="text-center">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -39,16 +40,16 @@
                                         <td>{!! $daftar->no_rm !!}</td>
                                         <td>{!! $daftar->nama_pasien !!}</td>
                                         <td>{!! $daftar->tgl_lahir !!}</td>
-                                        {{-- <td class="text-center">
-                                            <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                action="{{ route('posts.destroy', $daftar->id) }}" method="POST">
-                                                <a href="{{ route('posts.edit', $daftar->id) }}"
-                                                    class="btn btn-sm btn-primary">EDIT</a>
+                                        <td class="text-center">
+                                            <form action="{{ route('daftar.delete') }}" method="POST">
+                                                <input class="form-control" type="text" name="id" value="{{ old('tgl_daftar', $daftar->id) }}" readonly hidden/>
+                                                <a class="btn btn-sm btn-primary"
+                                                    href="{{ route('daftar.edit', $daftar->id) }}">Edit</a>
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
+                                                <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
                                             </form>
-                                        </td> --}}
+                                        </td>
                                     </tr>
                                     <?php $no++; ?>
                                 @empty

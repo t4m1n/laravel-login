@@ -32,5 +32,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('daftar', [DaftarController::class, 'index'])->name('daftar');
     Route::get('daftar-add', [DaftarController::class, 'create'])->name('daftar-add');
     Route::post('daftar', [DaftarController::class, 'add'])->name('daftar.save');
+    Route::get('daftar-edit/{id}', [DaftarController::class, 'edit'])->name('daftar.edit');
+    Route::put('daftar', [DaftarController::class, 'update'])->name('daftar.update');
+    Route::delete('daftar-delete', [DaftarController::class, 'delete'])->name('daftar.delete');
     Route::post('print', [DaftarController::class, 'print'])->name('print');
 });

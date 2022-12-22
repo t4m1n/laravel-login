@@ -66,6 +66,62 @@ class DaftarController extends Controller
             ]);
     }
 
+    public function edit($id)
+    {
+        $data['daftar'] = Daftar::where('id', $id)->first();
+
+        return view('daftars/edit', $data);
+    }
+
+    public function update(Request $request)
+    {
+        //validate form
+        $this->validate($request, [
+            'no_rm'         => 'required|min:6',
+            'nama_pasien'   => 'required',
+            'tgl_lahir'     => 'required',
+            'tgl_daftar'    => 'required',
+            'poli'          => 'required'
+        ]);
+
+        Daftar::where('id', $request->id)
+            ->update([
+                'no_rm'        => $request->no_rm,
+                'nama_pasien'   => $request->nama_pasien,
+                'poli'          => $request->poli,
+                'tgl_lahir'     => $request->tgl_lahir,
+                'tgl_daftar'    => $request->tgl_daftar,
+                'user'          => Auth::user()->user_id
+            ]);
+
+        $data = array(
+            'no_rm'         => $request->no_rm,
+            'nama_pasien'   => $request->nama_pasien,
+            'poli'          => $request->poli,
+            'tgl_lahir'     => $request->tgl_lahir,
+            'tgl_daftar'    => $request->tgl_daftar
+        );
+
+        //redirect to index
+        return redirect()->route('daftar')
+            ->with([
+                'success' => 'Data Berhasil Disimpan!',
+                'dataPx'  => $data
+            ]);
+    }
+
+    public function delete(Request $request)
+    {
+        //delete post
+        Daftar::where('id', $request->id)->delete();
+
+        //redirect to index
+        return redirect()->route('daftar')
+            ->with([
+                'success' => 'Data Berhasil Dihapus!'
+            ]);
+    }
+
     //print Mike42\Escpos
     public function print($no_rm, $nama, $poli, $tgl_lhr, $tgl_daftar)
     {
